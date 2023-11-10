@@ -2,17 +2,16 @@ import logging
 from aiogram import Dispatcher, types, Bot, executor
 from config import TOKEN
 from buttons import home
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN, parse_mode="html")
-dp = Dispatcher(bot, storage=MemoryStorage())
+dp = Dispatcher(bot)
 
 
 value = ''
 value2 = ''
 
-@dp.message_handler(commands=["start"], state='*')
+@dp.message_handler(commands=["start"])
 async def start_page(message: types.Message):
     await message.answer_photo(photo='https://phonoteka.org/uploads/posts/2021-05/1620079468_26-phonoteka_org-p-kalkulyator-fon-30.jpg', caption=f"0", reply_markup=home)
 
